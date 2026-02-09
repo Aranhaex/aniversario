@@ -1,0 +1,174 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    background-image: url('imagens/harry.png');
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    overflow: hidden;
+}
+
+#btn-iniciar {
+    padding: 15px 30px;
+    font-size: 15px;
+    cursor: pointer;
+    background-color: #d19b08;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+#btn-iniciar:hover {
+    background-color: #d1c008;
+}
+
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+
+.modal-content {
+    position: relative;
+    margin: auto;
+    padding: 0;
+    width: 80%;
+    max-width: 600px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+.mySlides {
+    display: none;
+    text-align: center;
+}
+
+img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 8px;
+}
+
+
+.close {
+    color: white;
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(0,0,0,0.3);
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .3} 
+  to {opacity: 1}
+}
+
+.volume{
+    text-align: center;
+    padding: 15px;
+    color: white;
+    
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.volume label {
+    font-size: 18px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.volume input[type=range] {
+    vertical-align: middle;
+    cursor: pointer;
+    width: 50%;
+}
+
+canvas {
+    background: transparent !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    pointer-events: none; 
+}
+#efeito-magico {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: rgb(255, 251, 0);
+    border-radius: 50%; 
+    transform: translate(-50%, -50%) scale(0); 
+    box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7); 
+    opacity: 0;
+    z-index: 10; 
+    pointer-events: none; 
+}
+
+/* A classe que o JavaScript vai adicionar para rodar a animação */
+#efeito-magico.magia-ativa {
+    /* Nome da animação | Duração | Curva de velocidade | Manter estado final */
+    animation: explosaoMagica 0.8s ease-out forwards;
+}
+
+/* Os passos da animação */
+@keyframes explosaoMagica {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 1;
+        box-shadow: 0 0 20px 10px rgba(255, 215, 0, 0.8);
+    }
+    100% {
+        /* Cresce muito (scale 50) e fica transparente (opacity 0) */
+        transform: translate(-50%, -50%) scale(50);
+        opacity: 0;
+        box-shadow: 0 0 100px 50px rgba(255, 215, 0, 0);
+    }
+}
