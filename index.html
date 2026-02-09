@@ -15,7 +15,10 @@
 
         <div class="modal-content">
             <div class="mySlides fade">
-                <img src="imagens/Passarela.jpg" alt="Passarela">  
+                <img src="imagens/Passarela.jpg" alt="Passarela"
+                data-mensagem="Essa foto foi tirada no dia da passarela, um dia muito especial pra gente, onde a gente se conheceu e começou a nossa história juntos. Foi um dia cheio de emoções, risadas e momentos inesquecíveis que marcaram o início do nosso relacionamento. Cada vez que vejo essa foto, me lembro de como tudo começou e de como crescemos juntos desde então."
+                onclick="mostrarMensagem(this)"
+                >  
             </div>
 
             <div class="mySlides fade">
@@ -177,6 +180,8 @@
             <div class="mySlides fade">
                 <img src="imagens/Passarela2.jpg" alt="1 ano do dia da passarela">
             </div>
+
+            <div id="caixa-texto" onclick="this.style.display='none'"></div>
 
             <a class="prev" onclick="mudarSlide(-1)">&#10094;</a>
             <a class="next" onclick="mudarSlide(1)">&#10095;</a>

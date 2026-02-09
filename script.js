@@ -4,25 +4,18 @@ var modal = document.getElementById("meuModal");
 var audio = document.getElementById("musicaFundo");
 var efeitoMagico = document.getElementById("efeito-magico");
 var temporizador;
+var caixaTexto = document.getElementById("caixa-texto");
 
-// --- NOVA FUNÇÃO PRINCIPAL ---
-// Esta é a função que o botão chama agora.
 function ativarMagia() {
-    // 1. Adiciona a classe que faz a animação CSS rodar
     efeitoMagico.classList.add("magia-ativa");
-
-    // 2. Espera o tempo da animação (800ms = 0.8s) antes de abrir o slideshow
     setTimeout(function() {
-        // Remove a classe para poder usar de novo se quiser
+        
         efeitoMagico.classList.remove("magia-ativa");
         
-        // Chama a função original que abre o modal e toca música
         abrirSlideshow();
-    }, 800); // Esse número deve bater com o tempo no CSS (0.8s)
+    }, 800);
 }
 
-
-// Função para abrir o modal, tocar música e INICIAR o automático
 function abrirSlideshow() {
     modal.style.display = "block";
     mostrarSlides(slideIndex);
@@ -36,7 +29,6 @@ function abrirSlideshow() {
     }, 5000);
 }
 
-// Função para fechar, pausar música e PARAR o automático
 function fecharSlideshow() {
     modal.style.display = "none";
     audio.pause();
@@ -44,20 +36,37 @@ function fecharSlideshow() {
     clearInterval(temporizador);
 }
 
-// Controles manuais
+
 function mudarSlide(n) {
     mostrarSlides(slideIndex += n);
     clearInterval(temporizador);
+    if (!caixaTexto || caixaTexto.style.display === "none") {
+        clearInterval(temporizador);
+    }else{
     temporizador = setInterval(function() {
         mudarSlide(1);
     }, 5000);
+    }
 }
 
-// Lógica de exibição
+function mostrarMensagem(imagemclicada){
+
+    var mensagem = imagemclicada.getAttribute("data-mensagem");
+    caixaTexto.innerText = mensagem;
+
+    if (caixaTexto.style.display === "block"){
+        caixaTexto.style.display = "none";
+    } else {
+        caixaTexto.style.display = "block";
+    }
+}
+
 function mostrarSlides(n) {
     var i;
     var slides = document.getElementsByClassName("mySlides");
     
+    if (caixaTexto) caixaTexto.style.display = "none";
+
     if (n > slides.length) {slideIndex = 1}
     if (n < 1) {slideIndex = slides.length}
     
