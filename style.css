@@ -57,11 +57,19 @@ body {
 
 img {
     width: 100%;
-    max-width: 300px;
     height: auto;
     border-radius: 8px;
 }
 
+.vertical {
+    max-width: 300px;
+    height: auto;
+}
+
+.horizontal {
+    max-width: 100%;
+    height: auto;
+}
 
 .close {
     color: white;

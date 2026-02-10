@@ -1,4 +1,3 @@
-// Variáveis globais
 var slideIndex = 1;
 var modal = document.getElementById("meuModal");
 var audio = document.getElementById("musicaFundo");
@@ -40,25 +39,29 @@ function fecharSlideshow() {
 function mudarSlide(n) {
     mostrarSlides(slideIndex += n);
     clearInterval(temporizador);
-    if (!caixaTexto || caixaTexto.style.display === "none") {
-        clearInterval(temporizador);
-    }else{
     temporizador = setInterval(function() {
         mudarSlide(1);
     }, 5000);
     }
-}
+
 
 function mostrarMensagem(imagemclicada){
-
-    var mensagem = imagemclicada.getAttribute("data-mensagem");
-    caixaTexto.innerText = mensagem;
-
     if (caixaTexto.style.display === "block"){
-        caixaTexto.style.display = "none";
+        fecharMensagem();
     } else {
+        var mensagem = imagemclicada.getAttribute("data-mensagem");
+        caixaTexto.innerText = mensagem;
         caixaTexto.style.display = "block";
+        clearInterval(temporizador);
     }
+}
+
+function fecharMensagem(){
+    caixaTexto.style.display = "none";
+    clearInterval(temporizador);
+    temporizador = setInterval(function() {
+        mudarSlide(1);
+    }, 5000);
 }
 
 function mostrarSlides(n) {
