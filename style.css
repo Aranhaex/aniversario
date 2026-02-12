@@ -59,6 +59,18 @@ img {
     width: 100%;
     height: auto;
     border-radius: 8px;
+    cursor: pointer;
+    transition: filter 0.5s ease;
+}
+
+img:hover {
+    transform: scale(1.02);
+    transition: transform 0.5s;
+}
+
+.efeito-blur{
+    filter: blur(8px) brightness(0.7);
+    transition: 0.5s ease;
 }
 
 .vertical {
@@ -197,6 +209,7 @@ canvas {
     z-index: 5; 
     border: 2px solid gold; 
     animation: aparecerTexto 0.3s ease;
+
 }
 
 @keyframes aparecerTexto {

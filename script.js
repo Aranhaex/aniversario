@@ -52,12 +52,18 @@ function mostrarMensagem(imagemclicada){
         var mensagem = imagemclicada.getAttribute("data-mensagem");
         caixaTexto.innerText = mensagem;
         caixaTexto.style.display = "block";
+        imagemclicada.classList.add("efeito-blur");
         clearInterval(temporizador);
     }
 }
 
 function fecharMensagem(){
     caixaTexto.style.display = "none";
+    var imagemblur = document.querySelector(".efeito-blur");
+    if (imagemblur) {
+        imagemblur.classList.remove("efeito-blur");
+    }
+
     clearInterval(temporizador);
     temporizador = setInterval(function() {
         mudarSlide(1);
@@ -109,7 +115,6 @@ class Particle {
         this.friction = 0.95;
         this.gravity = 0.05;
         this.opacity = 1;
-        // Velocidade baseada na direção da explosão
         this.vx = Math.cos(angle) * speed;
         this.vy = Math.sin(angle) * speed;
     }
@@ -127,7 +132,7 @@ class Particle {
         this.vy += this.gravity;
         this.x += Math.cos(this.angle) * this.speed;
         this.y += Math.sin(this.angle) * this.speed;
-        this.opacity -= 0.01; // Fade out
+        this.opacity -= 0.01; 
     }
 }
 
@@ -136,14 +141,12 @@ function createHeartParticles(x, y) {
     const color = `hsl(${Math.random() * 360}, 100%, 50%)`;
 
     for (let i = 0; i < particleCount; i++) {
-        // Fórmula matemática do coração
         let t = Math.random() * Math.PI * 2;
         let hx = 16 * Math.pow(Math.sin(t), 3);
         let hy = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
         
-        // Define a velocidade final baseada no formato
+        
         particles.push(new Particle(x, y, color, 1, Math.atan2(hy, hx), true));
-        // Ajusta a posição inicial para expandir a partir do centro
         particles[particles.length - 1].speed = Math.random() * 3 + 1;
     }
 }
